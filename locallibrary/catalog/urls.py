@@ -1,18 +1,16 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
+# from django.conf.urls import url
 
-from django.urls import include
-from django.urls import path
 
-from django.views.generic import RedirectView
 
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
-     path('catalog/', include('catalog.urls')),
-     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
-     static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+     path('', views.index, name='index'),
+     re_path('', views.index, name='index'),
 ]
-
-
+#
+# urlpatterns = [
+#     url(r'^$', views.index, name='index'),
+#     url(r'^books/$', views.BookListView.as_view(), name='books'),
+# ]
